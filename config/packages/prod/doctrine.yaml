@@ -1,7 +1,7 @@
 doctrine:
     dbal:
         # url: '%env(resolve:DATABASE_URL)%'
-        url: 'mysql://root:root@127.0.0.1:3306/bookshop?serverVersion=5.7'
+        url: 'mysql://b8d67caa8d95f4:53295322@us-cdbr-iron-east-05.cleardb.net/heroku_2dad42c0a402a1c?reconnect=true'
     orm:
         auto_generate_proxy_classes: false
         metadata_cache_driver:
