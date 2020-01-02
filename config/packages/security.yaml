@@ -19,14 +19,15 @@ security:
             stateless: true
             anonymous: true
             json_login:
-                check_path:               app_login
+                check_path: app_login
                 username_path: email
                 password_path: password
-                success_handler:          lexik_jwt_authentication.handler.authentication_success
-                failure_handler:          lexik_jwt_authentication.handler.authentication_failure
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
         api:
-            pattern:   ^/api
+            # pattern:   ^/api
+            pattern:   ^/fdsqfdsqfdsq
             stateless: true
             guard:
                 authenticators:
