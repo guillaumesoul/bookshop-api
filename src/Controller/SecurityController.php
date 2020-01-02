@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use ApiPlatform\Core\Api\IriConverterInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,16 +21,17 @@ class SecurityController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(LoggerInterface $logger)
+    public function index(EntityManagerInterface $em)
     {
-        $this->logger->info('logging from home');
-        $user = $this->getUser();
+
+        $dbConfig = $em->getConfiguration();
+        $dbConnection = $em->getConnection();
+        $aa = $dbConnection->getParams();
         $za = 'dsq';
-        $za = 'dsq';
-        //return new Response(var_dump(phpinfo()));
-        return $this->render('security/index.html.twig', [
+        return new Response(var_dump($aa));
+        /*return $this->render('security/index.html.twig', [
             'controller_name' => 'SecurityController',
-        ]);
+        ]);*/
     }
 
     /**
