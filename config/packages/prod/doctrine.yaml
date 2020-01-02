@@ -1,4 +1,7 @@
 doctrine:
+    dbal:
+        # url: '%env(resolve:DATABASE_URL)%'
+        url: 'mysql://root:root@127.0.0.1:3306/bookshop?serverVersion=5.7'
     orm:
         auto_generate_proxy_classes: false
         metadata_cache_driver:
