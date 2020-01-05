@@ -24,14 +24,14 @@ class SecurityController extends AbstractController
     public function index(EntityManagerInterface $em)
     {
 
-        $dbConfig = $em->getConfiguration();
+        /*$dbConfig = $em->getConfiguration();
         $dbConnection = $em->getConnection();
         $aa = $dbConnection->getParams();
         $za = 'dsq';
-        return new Response(var_dump($aa));
-        /*return $this->render('security/index.html.twig', [
+        return new Response(var_dump($aa));*/
+        return $this->render('security/index.html.twig', [
             'controller_name' => 'SecurityController',
-        ]);*/
+        ]);
     }
 
     /**
