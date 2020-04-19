@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Entity\JeuxDeLaVie\JeuxDeLaVieTacheFaite;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -38,13 +39,19 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UserTache", mappedBy="user")
+     * @ORM\Column(type="string", length=255)
      */
-    private $userTaches;
+    private $name;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\JeuxDeLaVie\JeuxDeLaVieTacheFaite", mappedBy="user")
+     */
+    private $jeuxDeLaVieTacheFaites;
 
     public function __construct()
     {
         $this->userTaches = new ArrayCollection();
+        $this->jeuxDeLaVieTacheFaites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -125,34 +132,47 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    /**
-     * @return Collection|UserTache[]
-     */
-    public function getUserTaches(): Collection
+    public function getName(): ?string
     {
-        return $this->userTaches;
+        return $this->name;
     }
 
-    public function addUserTach(UserTache $userTach): self
+    public function setName(string $name): self
     {
-        if (!$this->userTaches->contains($userTach)) {
-            $this->userTaches[] = $userTach;
-            $userTach->setUser($this);
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|JeuxDeLaVieTacheFaite[]
+     */
+    public function getJeuxDeLaVieTacheFaites(): Collection
+    {
+        return $this->jeuxDeLaVieTacheFaites;
+    }
+
+    public function addJeuxDeLaVieTacheFaite(JeuxDeLaVieTacheFaite $jeuxDeLaVieTacheFaite): self
+    {
+        if (!$this->jeuxDeLaVieTacheFaites->contains($jeuxDeLaVieTacheFaite)) {
+            $this->jeuxDeLaVieTacheFaites[] = $jeuxDeLaVieTacheFaite;
+            $jeuxDeLaVieTacheFaite->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeUserTach(UserTache $userTach): self
+    public function removeJeuxDeLaVieTacheFaite(JeuxDeLaVieTacheFaite $jeuxDeLaVieTacheFaite): self
     {
-        if ($this->userTaches->contains($userTach)) {
-            $this->userTaches->removeElement($userTach);
+        if ($this->jeuxDeLaVieTacheFaites->contains($jeuxDeLaVieTacheFaite)) {
+            $this->jeuxDeLaVieTacheFaites->removeElement($jeuxDeLaVieTacheFaite);
             // set the owning side to null (unless already changed)
-            if ($userTach->getUser() === $this) {
-                $userTach->setUser(null);
+            if ($jeuxDeLaVieTacheFaite->getUser() === $this) {
+                $jeuxDeLaVieTacheFaite->setUser(null);
             }
         }
 
         return $this;
     }
+
 }
